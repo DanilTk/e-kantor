@@ -18,6 +18,10 @@ public class ExchangeHandler {
 	private final ExchangeService exchangeService;
 
 	public FxOperationResponseDto exchange(UUID accountId, @Valid ExchangeMoneyRequestDto dto) {
+		if (dto.baseCurrency() == dto.quoteCurrency()) {
+			throw new IllegalArgumentException("Please provide different currencies");
+		}
+
 		AccountTransaction accountTransaction = exchangeService.exchange(accountId, dto);
 		return TransactionDtoMapper.map(accountTransaction);
 	}
