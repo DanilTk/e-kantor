@@ -1,4 +1,4 @@
-Task:
+TASK:
 
 Celem zadania jest przygotowanie aplikacji serwującej API REST, która pozwoli na
 założenie konta oraz wymianę waluty w parze PLN<->USD.
@@ -26,7 +26,16 @@ Założenia funkcjonalne:
 7. W przypadku pytań – można się dopytywać mailowo.
    Oprócz spełnienia wymagań funkcjonalnych oceniany będzie również styl rozwiązania
 
-ASSUMPTIONS:
+STARTUP:
+Please use swagger ui for api interaction: http://localhost:8080/swagger-ui/index.html#/
+
+ASSUMPTIONS/NOTES:
 
 1. Accounts do not have uniqueness constraints on name and surname.
 2. No authentication is required.
+3. Entity classes are suffixed with "Entity" so to avoid confusion with domain classes, e.g. Account and AccountEntity.
+4. Handlers responsible as a medium between the controller and the service layer, they call services and map domain
+   classes to dtos.
+5. Application is built as a one module monolith, yet its structure allows seamless split into modules in case it
+   growths bigger. That would require introducing extra interfaces / adding extra pojos to avoid dtos reaching data
+   layer to decouple the modules which is skipped for simplicity.
